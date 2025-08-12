@@ -14,14 +14,12 @@ app.use(express.static('.'));
 // Environment variable for API key
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
 
-if (!OPENROUTER_API_KEY) {
-  console.error('ERROR: OPENROUTER_API_KEY environment variable is not set!');
-  process.exit(1);
-}
-
 // Proxy endpoint for chat completions
 app.post('/api/chat', async (req, res) => {
   try {
+    if (!OPENROUTER_API_KEY) {
+      return res.status(500).json({ error: 'Server misconfiguration: OPENROUTER_API_KEY is not set' });
+    }
     const { messages, model = 'openai/gpt-3.5-turbo', temperature = 0.7, max_tokens = 1000 } = req.body;
 
     // Basic validation
@@ -71,7 +69,13 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-  console.log(`Open http://localhost:${PORT} to view the application`);
-});
+// Only start a server when running locally. On Vercel, export a handler instead.
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+    console.log(`Open http://localhost:${PORT} to view the application`);
+  });
+}
+
+// Export the Express app as a handler for Vercel
+module.exports = (req, res) => app(req, res);
