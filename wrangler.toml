@@ -8,3 +8,8 @@ pages_build_output_dir = "."
 # Environment variables (set these in Cloudflare dashboard)
 # OPENROUTER_API_KEY = "your_api_key_here"
 
+# Build configuration
+[build]
+command = ""
+cwd = ""
+
