@@ -1,0 +1,19 @@
+# Cloudflare Pages configuration
+name = "lolchat"
+compatibility_date = "2024-01-01"
+
+# Pages configuration
+pages_build_output_dir = "."
+
+# Environment variables (set these in Cloudflare dashboard)
+# OPENROUTER_API_KEY = "your_api_key_here"
+
+[build]
+command = ""
+cwd = ""
+
+# You can also define routes if needed
+# [[routes]]
+# pattern = "/api/*"
+# custom_domain = true
+

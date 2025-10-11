@@ -69,13 +69,8 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// Only start a server when running locally. On Vercel, export a handler instead.
-if (require.main === module) {
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-    console.log(`Open http://localhost:${PORT} to view the application`);
-  });
-}
-
-// Export the Express app as a handler for Vercel
-module.exports = (req, res) => app(req, res);
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+  console.log(`Open http://localhost:${PORT} to view the application`);
+});

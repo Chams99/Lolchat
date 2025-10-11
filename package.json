@@ -6,6 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
+    "dev:cf": "wrangler pages dev . --port 8788",
+    "deploy": "wrangler pages deploy . --project-name=lolchat",
     "build": "echo 'No build step required'"
   },
   "dependencies": {
@@ -15,9 +17,10 @@
     "dotenv": "^16.0.3"
   },
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "wrangler": "^3.0.0"
   },
-  "keywords": ["chatbot", "league-of-legends", "ai"],
+  "keywords": ["chatbot", "league-of-legends", "ai", "cloudflare-pages"],
   "author": "",
   "license": "MIT"
 }
