@@ -7,7 +7,7 @@
     "start": "node server.js",
     "dev": "nodemon server.js",
     "dev:cf": "wrangler pages dev . --port 8788",
-    "deploy": "wrangler pages deploy . --project-name=lolchat",
+    "deploy": "wrangler pages deploy .",
     "build": "echo 'No build step required for Pages'"
   },
   "dependencies": {
