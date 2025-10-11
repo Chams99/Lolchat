@@ -1,18 +1,10 @@
-# Cloudflare Workers configuration
+# Cloudflare Pages configuration
 name = "lolchat"
-main = "index.html"
 compatibility_date = "2024-01-01"
 
-# Static assets
-[assets]
-directory = "."
-binding = "ASSETS"
+# Pages configuration
+pages_build_output_dir = "."
 
 # Environment variables (set these in Cloudflare dashboard)
 # OPENROUTER_API_KEY = "your_api_key_here"
-
-# Routes
-routes = [
-  { pattern = "lolchat.dhibichams.workers.dev/*", custom_domain = true }
-]
 
