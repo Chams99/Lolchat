@@ -3,15 +3,13 @@ node_modules/
 
 # Environment variables
 .env
-.dev.vars
 
 # Logs
 *.log
 npm-debug.log*
 
-# Cloudflare
-.wrangler/
-wrangler.toml.local
+# Vercel
+.vercel/
 
 # OS
 .DS_Store

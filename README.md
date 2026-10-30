@@ -1,124 +1,41 @@
-# League of Legends Chatbot
+# League Chatbot
 
-An interactive chatbot featuring League of Legends champions with AI-powered responses and dynamic visual effects.
+Chat with twelve League of Legends champions, each answering in their own voice, with a themed interface per champion and typed-out replies. Live at [lolchat.vercel.app](https://lolchat.vercel.app).
 
-## 🌟 Features
+Champions: Kayle, Ahri, Yasuo, Lux, Garen, Darius, Jhin, Shaco, Swain, Sett, Viego and Evelynn.
 
-- Chat with 12 different League of Legends champions
-- Each champion has unique personality and speaking style
-- Beautiful champion-themed UI with particle effects
-- Typing animation for AI responses
-- Mobile-responsive design
+## How it works
 
-## 🚀 Deployment
+- `index.html` is the whole interface: plain HTML, CSS and JavaScript.
+- `api/chat.js` forwards the conversation to [OpenRouter](https://openrouter.ai). The model, reply length and input size are fixed on the server, so the API key cannot be used for other models or oversized requests.
+- `api/health.js` returns `{ "status": "ok" }`.
 
-### Cloudflare Pages (Recommended)
+On Vercel the files in `api/` run as serverless functions. Locally, `server.js` serves the page and the same two handlers with Express.
 
-1. **Prerequisites:**
-   - A Cloudflare account
-   - An OpenRouter API key ([get one here](https://openrouter.ai/))
+## Configuration
 
-2. **Deploy via Git:**
-   - Push your code to a GitHub/GitLab repository
-   - Go to [Cloudflare Pages Dashboard](https://dash.cloudflare.com/)
-   - Click "Create a project" > "Connect to Git"
-   - Select your repository
-   - Configure build settings:
-     - **Build command:** (leave empty)
-     - **Build output directory:** `.`
-     - **Root directory:** (leave empty)
-   - Click "Save and Deploy"
+| Variable | Required | Purpose |
+|---|---|---|
+| `OPENROUTER_API_KEY` | yes | OpenRouter key used by the chat endpoint |
+| `OPENROUTER_MODEL` | no | Model to use, `openai/gpt-3.5-turbo` by default |
 
-3. **Set Environment Variables:**
-   - In your Cloudflare Pages project settings
-   - Go to "Settings" > "Environment variables"
-   - Add: `OPENROUTER_API_KEY` with your API key
-   - Deploy to both Production and Preview environments
+On Vercel, set them under Project Settings → Environment Variables. Locally, copy `.env.example` to `.env`.
 
-4. **Deploy via Wrangler CLI (Alternative):**
-   ```bash
-   # Install Wrangler
-   npm install -g wrangler
-   
-   # Login to Cloudflare
-   wrangler login
-   
-   # Deploy
-   wrangler pages deploy . --project-name=lolchat
-   ```
+## Local development
 
-### Local Development
+Requires Node.js 18 or later.
 
-1. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-2. **Set up environment variables:**
-   - Create a `.dev.vars` file (copy from `.dev.vars.example`)
-   - Add your OpenRouter API key
-
-3. **Run locally with Wrangler:**
-   ```bash
-   npx wrangler pages dev . --port 3000
-   ```
-   
-   Or use the Express server:
-   ```bash
-   npm start
-   ```
-
-4. **Open in browser:**
-   - Navigate to `http://localhost:3000`
-
-## 📁 Project Structure
-
-```
-lolchat/
-├── index.html              # Main HTML file with UI and JavaScript
-├── server.js              # Express server (for local dev)
-├── functions/             # Cloudflare Pages Functions
-│   └── api/
-│       ├── chat.js       # Chat API endpoint
-│       └── health.js     # Health check endpoint
-├── wrangler.toml         # Cloudflare configuration
-├── package.json          # Dependencies
-└── README.md            # This file
+```bash
+npm install
+npm run dev
 ```
 
-## 🎮 Available Champions
+Then open http://localhost:3000.
 
-- Kayle - The Righteous
-- Ahri - The Nine-Tailed Fox
-- Yasuo - The Unforgiven
-- Lux - The Lady of Luminosity
-- Garen - The Might of Demacia
-- Darius - The Hand of Noxus
-- Jhin - The Virtuoso
-- Shaco - The Demon Jester
-- Swain - The Noxian Grand General
-- Sett - The Boss
-- Viego - The Ruined King
-- Evelynn - Agony's Embrace
+## Deployment
 
-## 🔧 Configuration
+Deployed on Vercel from the `main` branch, with no build step. `vercel.json` sets security headers.
 
-### Environment Variables
-
-- `OPENROUTER_API_KEY`: Your OpenRouter API key (required)
-
-### API Settings
-
-You can modify the AI model and parameters in the `index.html` file:
-- Model: `openai/gpt-3.5-turbo` (default)
-- Temperature: `0.7`
-- Max tokens: `1000`
-
-## ⚠️ Disclaimer
+## Disclaimer
 
 This is a fan project and is not affiliated with or endorsed by Riot Games. League of Legends™ is a trademark of Riot Games, Inc.
-
-## 📝 License
-
-MIT License - See LICENSE file for details
-

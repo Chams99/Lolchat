@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Interactive League of Legends chatbot for engaging conversations with game characters. Experience immersive chat with AI-powered responses and dynamic visual effects.">
     <title>League Chatbot - Legends Conversation</title>
+    <link rel="canonical" href="https://lolchat.vercel.app/" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="League Chatbot - Legends Conversation" />
+    <meta property="og:description" content="Chat with League of Legends champions, each answering in their own voice. A fan project, not affiliated with Riot Games." />
+    <meta property="og:url" content="https://lolchat.vercel.app/" />
+    <meta property="og:image" content="https://lolchat.vercel.app/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
     <!-- DISCLAIMER: This is a fan project and is not affiliated with or endorsed by Riot Games. League of Legends and all related content are trademarks of Riot Games, Inc. -->
     <style>
       :root {
@@ -1959,6 +1971,7 @@
             // Create avatar for AI messages
             const avatar = document.createElement('img');
             avatar.classList.add('champion-avatar');
+            avatar.alt = '';
             avatar.src = `https://ddragon.leagueoflegends.com/cdn/12.6.1/img/champion/${selectedChampion}.png`;
             avatar.style.borderColor = theme.avatarBorder;
             messageDiv.appendChild(avatar);
