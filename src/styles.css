@@ -243,6 +243,52 @@ textarea {
   color: var(--muted);
 }
 
+.legal p {
+  margin: 0;
+}
+
+/* Who built the app: a quiet note above the Riot notice. */
+.madeby {
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+  font-size: 12.5px;
+}
+
+.madeby__title {
+  margin: 0 0 3px;
+  font: 600 13px/1.4 var(--body);
+  color: var(--text);
+}
+
+.madeby a {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 3px;
+  transition: color 0.15s, text-decoration-color 0.15s;
+}
+
+.madeby a:hover {
+  color: var(--gold);
+  text-decoration-color: var(--gold);
+}
+
+.madeby__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 14px;
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.madeby__links a {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+}
+
 /* Conversation */
 
 .main {
@@ -744,6 +790,33 @@ textarea {
     padding: 6px 14px 10px;
     border-right: 0;
     font-size: 12px;
+  }
+
+  /* On phones the credit shrinks to one line so the chat keeps its room. */
+  .madeby {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 14px;
+    margin-bottom: 4px;
+    padding-bottom: 4px;
+  }
+
+  .madeby__title {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .madeby__role {
+    display: none;
+  }
+
+  .madeby__links {
+    margin: 0;
   }
 }
 

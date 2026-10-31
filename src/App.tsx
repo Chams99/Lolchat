@@ -4,6 +4,7 @@ import { ChampionPicker } from "./components/ChampionPicker";
 import { Conversation, type Message } from "./components/Conversation";
 import { ChatError, errorMessage, streamReply, type ChatMessage } from "./lib/chat-client";
 import { textOn } from "./lib/color";
+import { developer } from "./lib/developer";
 import { readJSON, writeJSON } from "./lib/storage";
 
 const CHAMPION_KEY = "lolchat:champion";
@@ -164,9 +165,34 @@ export function App() {
       </main>
 
       <footer className="legal">
-        LolChat isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially
-        involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks
-        or registered trademarks of Riot Games, Inc.
+        <section className="madeby" aria-labelledby="madeby-title">
+          <h2 id="madeby-title" className="madeby__title">
+            Need an app like this one?
+          </h2>
+          <p>
+            Built by{" "}
+            <a href={developer.portfolioHref} rel="author">
+              {developer.name}
+            </a>
+            <span className="madeby__role">, {developer.role}</span>.
+          </p>
+          <ul className="madeby__links">
+            <li>
+              <a href={developer.phoneHref}>{developer.phone}</a>
+            </li>
+            <li>
+              <a href={developer.whatsappHref}>WhatsApp</a>
+            </li>
+            <li>
+              <a href={developer.portfolioHref}>chames.tn</a>
+            </li>
+          </ul>
+        </section>
+        <p>
+          LolChat isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially
+          involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks
+          or registered trademarks of Riot Games, Inc.
+        </p>
       </footer>
     </div>
   );
