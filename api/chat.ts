@@ -2,7 +2,7 @@
 // The browser sends only the champion id and the conversation; the persona
 // instructions, model and limits are fixed here, so the OpenRouter key
 // cannot be used for anything else.
-import { findChampion, systemPrompt, type Champion } from "../shared/champions";
+import { findChampion, systemPrompt, type Champion } from "../shared/champions.js";
 
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
 const DEFAULT_MODEL = "openai/gpt-4.1-mini";
