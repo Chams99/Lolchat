@@ -49,11 +49,9 @@ function savedConversations(conversations: Conversations): Conversations {
 }
 
 export function App() {
-  const [championId, setChampionId] = useState(() => {
-    const saved = readJSON<string>(CHAMPION_KEY, champions[0].id);
-    return findChampion(saved) ? saved : champions[0].id;
-  });
-  const [conversations, setConversations] = useState<Conversations>(() => savedConversations(readJSON(CONVERSATIONS_KEY, {})));
+  const [championId, setChampionId] = useState(champions[0].id);
+  const [conversations, setConversations] = useState<Conversations>({});
+  const [storageRestored, setStorageRestored] = useState(false);
   const [streaming, setStreaming] = useState<{ championId: string; messageId: string } | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const controllerRef = useRef<AbortController | null>(null);
@@ -61,10 +59,18 @@ export function App() {
   const champion = findChampion(championId) ?? champions[0];
   const messages = conversations[champion.id] ?? [greetingFor(champion)];
 
-  useEffect(() => writeJSON(CHAMPION_KEY, championId), [championId]);
   useEffect(() => {
-    if (!streaming) writeJSON(CONVERSATIONS_KEY, savedConversations(conversations));
-  }, [conversations, streaming]);
+    const savedChampionId = readJSON<string>(CHAMPION_KEY, champions[0].id);
+    setChampionId(findChampion(savedChampionId) ? savedChampionId : champions[0].id);
+    setConversations(savedConversations(readJSON(CONVERSATIONS_KEY, {})));
+    setStorageRestored(true);
+  }, []);
+  useEffect(() => {
+    if (storageRestored) writeJSON(CHAMPION_KEY, championId);
+  }, [championId, storageRestored]);
+  useEffect(() => {
+    if (storageRestored && !streaming) writeJSON(CONVERSATIONS_KEY, savedConversations(conversations));
+  }, [conversations, streaming, storageRestored]);
   useEffect(() => {
     document.title = `${champion.name} · LolChat`;
   }, [champion]);
